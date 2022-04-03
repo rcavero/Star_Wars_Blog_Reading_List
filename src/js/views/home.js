@@ -28,7 +28,7 @@ export const Home = () => {
 			<div className="row row-cols-1 row-cols-md-4 g-4">
 				{store.characters.map((value, index) => {
 					return (
-						<div className="col">
+						<div key={index} className="col">
 							<div className="card">
 								<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1200px-No_image_3x4.svg.png" className="card-img-top" alt="..." />
 								<div className="card-body">
@@ -36,7 +36,9 @@ export const Home = () => {
 									<p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 									<div className="d-flex justify-content-between">
 										<button type="button" class="btn btn-outline-primary">Learn more!</button>
-										<button type="button" class="btn btn-outline-warning">Like</button>
+										<button type="button" class="btn btn-outline-warning" onClick={(e)=>{
+											actions.addFavorite(value.name)
+										}}>Like</button>
 									</div>
 								</div>
 							</div>

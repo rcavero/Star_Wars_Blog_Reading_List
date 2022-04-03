@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			characters: []
+			characters: [],
+			favoritesList: []
 		},
 		actions: {
 			getCharacters: () => {
@@ -21,6 +22,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(resp => setStore({characters: resp.results}))
 					.catch(error => console.log("There was an error loading the characters from de API"))
+			},
+			addFavorite: (character) => {
+				const store = getStore()
+				store.favoritesList.push(character)
+				console.log(store.favoritesList)
+				console.log(store.favoritesList.length)
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

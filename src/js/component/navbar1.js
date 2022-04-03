@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext"
 
 export const Navbar1 = () => {
+    const { store, actions } = useContext(Context);
+    const [list, setList] = useState(["hola"])
+    useEffect(() => {
+        setList(store.favoritesList)
+        console.log("Se está cargando")
+	},[])
     return (
         <nav className="navbar navbar-light bg-light mb-3">
             <Link to="/">
@@ -14,13 +21,15 @@ export const Navbar1 = () => {
             <div className="ml-auto me-2">
                 <div className="dropdown">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button<span className="badge bg-secondary ms-2">4</span>
+                        Favorites<span className="badge bg-secondary ms-2">{store.characters.length}</span>
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                        {store.characters.map((value, index) => {
+                            return(
+                                <li key={index}><a className="dropdown-item" href="#">{value.name}</a></li>
+                            )
+                        })}
+                   </ul>
                 </div>
                 {/* <Link to="/demo">
                     <button className="btn btn-primary">Check the Context in action</button>
