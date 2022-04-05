@@ -25,9 +25,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavorite: (character) => {
 				const store = getStore()
-				store.favoritesList.push(character)
+				if(!store.favoritesList.includes(character)){
+					store.favoritesList.push(character)
+					setStore({favoritesList: store.favoritesList})
+				}else{
+					console.log("Hacer que elimine el elemento")
+				}
 				console.log(store.favoritesList)
 				console.log(store.favoritesList.length)
+				
+			
+				
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

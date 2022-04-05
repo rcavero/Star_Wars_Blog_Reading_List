@@ -4,11 +4,10 @@ import { Context } from "../store/appContext"
 
 export const Navbar1 = () => {
     const { store, actions } = useContext(Context);
-    const [list, setList] = useState(["hola"])
-    useEffect(() => {
-        setList(store.favoritesList)
-        console.log("Se está cargando")
-	},[])
+    // const [list, setList] = useState(["hola"])
+    // useEffect(() => {
+    //     console.log("Se está cargando")
+	// },[store.favoritesList])
     return (
         <nav className="navbar navbar-light bg-light mb-3">
             <Link to="/">
@@ -21,12 +20,12 @@ export const Navbar1 = () => {
             <div className="ml-auto me-2">
                 <div className="dropdown">
                     <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Favorites<span className="badge bg-secondary ms-2">{store.characters.length}</span>
+                        Favorites<span className="badge bg-secondary ms-2">{store.favoritesList.length}</span>
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        {store.characters.map((value, index) => {
+                        {store.favoritesList.map((value, index) => {
                             return(
-                                <li key={index}><a className="dropdown-item" href="#">{value.name}</a></li>
+                                <li key={index}><a className="dropdown-item" href="#">{value}</a></li>
                             )
                         })}
                    </ul>
