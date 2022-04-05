@@ -30,6 +30,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({favoritesList: store.favoritesList})
 				}else{
 					console.log("Hacer que elimine el elemento")
+					const newList = store.favoritesList.filter(elmnt => elmnt != character)
+					console.log(newList)
+					setStore({favoritesList: newList})
 				}
 				console.log(store.favoritesList)
 				console.log(store.favoritesList.length)
